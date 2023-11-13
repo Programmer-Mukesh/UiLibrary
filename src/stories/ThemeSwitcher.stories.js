@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ThemeSwitcher from "../Components/ThemeSwitcher";
 
 export default {
-  title: "ThemeSwitcher",
+  title: "Components/ThemeSwitcher",
   component: ThemeSwitcher,
 };
 
@@ -13,10 +13,29 @@ const Template = (args) => {
     setIsDarkMode((prev) => !prev);
   };
 
-  return <ThemeSwitcher isDarkMode={isDarkMode} toggleTheme={toggleTheme} />;
+  useEffect(() => {
+    setIsDarkMode(args?.isDarkMode);
+  }, [args]);
+
+  return (
+    <div
+      style={
+        isDarkMode
+          ? { backgroundColor: "black", color: "white", height: "100vh" }
+          : null
+      }
+    >
+      <ThemeSwitcher isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+    </div>
+  );
 };
 
-export const Default = Template.bind({});
-Default.args = {
+export const Dark = Template.bind({});
+Dark.args = {
   isDarkMode: true,
+};
+
+export const Light = Template.bind({});
+Light.args = {
+  isDarkMode: false,
 };
