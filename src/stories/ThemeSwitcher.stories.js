@@ -6,6 +6,7 @@ export default {
   component: ThemeSwitcher,
 };
 
+
 const Template = (args) => {
   const [isDarkMode, setIsDarkMode] = useState(args?.isDarkMode);
 
